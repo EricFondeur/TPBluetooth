@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ListView listDev;
     BluetoothAdapter bluetoothadapter;
 
-    private static final int  REQUEST_ENABLE_BT = 2;
+    private static final int REQUEST_ENABLE_BT = 2;
+    public static final int REQUIEST_DISCOVERABLE_BLUETOOTH=123;
     private static final int REQUEST_ENABLE_LOCATION = 457;
 
     private BluetoothAdapter bluetoothAdapter = null;
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.Dicoverdev:
                 break;
+            case R.id.Makedev:
+                MakeDiscoverable();
+                break;
         }
     }
 
@@ -96,6 +100,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else{
             Toast.makeText(this,"le bluetooth est déjà désactivé",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void MakeDiscoverable(){
+        Intent discoverableIntent=new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+        startActivityForResult(discoverableIntent, REQUIEST_DISCOVERABLE_BLUETOOTH);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case REQUIEST_DISCOVERABLE_BLUETOOTH:
+                if (resultCode==300)
+                    Toast.makeText(this, "l'appareil est visible", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "l'appareil n'est pas visible", Toast.LENGTH_SHORT).show();
         }
     }
 }
