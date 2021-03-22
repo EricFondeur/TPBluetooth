@@ -2,8 +2,10 @@ package com.example.tpbluetooh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BluetoothAdapter bluetoothadapter;
 
     private static final int  REQUEST_ENABLE_BT = 2;
+    private static final int REQUEST_ENABLE_LOCATION = 457;
+
+    private BluetoothAdapter bluetoothAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         //test
         Init();
+        Autorisation();
     }
 
     public void Init(){
@@ -55,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.Dicoverdev:
                 break;
+        }
+    }
+
+    private void Autorisation(){
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        if ( checkSelfPermission( Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED ) {
+            requestPermissions(
+                    new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },
+                    REQUEST_ENABLE_LOCATION );
         }
     }
 
