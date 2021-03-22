@@ -69,4 +69,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivityForResult(enableBTintent,REQUEST_ENABLE_BT);
         }
     }
+
+    public void TurnBToff(){
+        bluetoothadapter = BluetoothAdapter.getDefaultAdapter();
+
+        if(bluetoothadapter.isEnabled()){
+            bluetoothadapter.disable();
+        }
+        else{
+            Toast.makeText(this,"le bluetooth est déjà désactivé",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
