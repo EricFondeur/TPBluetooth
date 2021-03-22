@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TPBluetooh</string>
+    <string name="show_paired_devices">Show Paired devices</string>
+    <string name="discover_new_devices">Discover new devices</string>
+    <string name="make_disverable">make disverable</string>
+    <string name="bluetooth_off">Bluetooth OFF</string>
+    <string name="bluetooth_on">Bluetooth ON</string>
+    <string name="status">Status :</string>
+    <string name="nom">Mon bluetooth :</string>
 </resources>

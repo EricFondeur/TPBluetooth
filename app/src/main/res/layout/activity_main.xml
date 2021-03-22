@@ -12,43 +12,43 @@
         android:id="@+id/Readbuffer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/nom"/>
 
     <TextView
         android:id="@+id/Status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/status" />
 
     <Button
         android:id="@+id/BTon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/bluetooth_on" />
 
     <Button
         android:id="@+id/BToff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/bluetooth_off" />
 
     <Button
         android:id="@+id/Showpaired"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/show_paired_devices" />
 
     <Button
         android:id="@+id/Dicoverdev"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/discover_new_devices" />
 
     <Button
         android:id="@+id/Makedev"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/make_disverable" />
 
     <ListView
         android:id="@+id/Listdev"
