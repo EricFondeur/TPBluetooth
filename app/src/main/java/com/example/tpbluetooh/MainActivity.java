@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TurnBTon();
                 break;
             case R.id.BToff:
+                TurnBToff();
                 break;
             case R.id.Showpaired:
                 break;
