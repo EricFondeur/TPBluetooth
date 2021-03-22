@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int REQUEST_ENABLE_BT = 2;
     public static final int REQUIEST_DISCOVERABLE_BLUETOOTH=123;
     private static final int REQUEST_ENABLE_LOCATION = 457;
-
     private BluetoothAdapter bluetoothAdapter = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //test
         Init();
         Autorisation();
+        IntentFilter filter1 = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        registerReceiver(mBroadcastReceiver1, filter1);
     }
 
     public void Init(){
@@ -119,4 +124,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "l'appareil n'est pas visible", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)){
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+                switch (state){
+                    case BluetoothAdapter.STATE_OFF:
+                        status.setText("Status: Bluetooth off");
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_OFF:
+                        status.setText("Status : Bluetooth turning off");
+                        break;
+                    case BluetoothAdapter.STATE_ON:
+                        status.setText("Status : Bluetooth on");
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_ON:
+                        status.setText("Status : Bluetooth turning on");
+                        break;
+                }
+            }
+        }
+    };
 }
